@@ -6,7 +6,9 @@ class PFet01v8(SubCircuit):
 
     NODES = ("DRAIN", "GATE", "SOURCE", "SUBSTRATE")
 
-    def __init__(self, name: str, fet_type: str, length: float, width: float) -> None:
+    def __init__(
+        self, name: str, fet_type: str, length: float, width: float
+    ) -> None:
         super().__init__(name, *self.NODES)
         self.X(
             "M1",
