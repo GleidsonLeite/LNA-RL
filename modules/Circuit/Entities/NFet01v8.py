@@ -1,3 +1,4 @@
+from Errors.InvalidComponentValueError import InvalidComponentValueError
 from PySpice.Spice.Netlist import SubCircuit
 
 
@@ -27,3 +28,29 @@ class NFet01v8(SubCircuit):
             nf=1,
             mult=1,
         )
+
+    @property
+    def length(self) -> float:
+        component_length: float = self.element("XM1").parameters["L"]
+        return component_length
+
+    @length.setter
+    def length(self, new_length: float) -> None:
+        if new_length <= 0:
+            raise InvalidComponentValueError(
+                value=new_length, message="You should provide a positive value"
+            )
+        self.element("XM1").parameters["L"] = new_length
+
+    @property
+    def width(self) -> float:
+        component_width: float = self.element("XM1").parameters["W"]
+        return component_width
+
+    @width.setter
+    def width(self, new_width: float) -> None:
+        if new_width <= 0:
+            raise InvalidComponentValueError(
+                value=new_width, message="You should provide a positive value"
+            )
+        self.element("XM1").parameters["W"] = new_width
