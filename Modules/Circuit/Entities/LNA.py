@@ -1,5 +1,5 @@
-from modules.Circuit.Entities.PFet01v8 import PFet01v8
-from modules.Circuit.Entities.NFet01v8 import NFet01v8
+from Modules.Circuit.Entities.PFet01v8 import PFet01v8
+from Modules.Circuit.Entities.NFet01v8 import NFet01v8
 from PySpice.Spice.Netlist import SubCircuit
 
 
@@ -25,14 +25,14 @@ class LNA(SubCircuit):
 
         self.L("LG", "IN", "PLG", 5.8e-9)
         self.R("RPOL1", "PLG", "VPOL1", 19939)
-        self.X("M1", "NFETW1", "PRF", "PLG", "GND", "GND")
+        self.X("M1", "NFET1", "PRF", "PLG", "GND", "GND")
         self.C("C1", "PC1", "PLG", 19.7e-12)
         self.R("RF", "PC1", "PRF", 19540)
         self.X("M2", "PFET2", "VCC", "PC1", "PRF", "GND")
         self.C("CDEC", "VCC", "GND", 1e-6)
         self.C("CM1", "PRF", "PCM1", 4.7e-12)
         self.R("RPOL2", "PCM1", "VPOL2", 13548)
-        self.X("M3", "NFETW3", "PM3", "PCM1", "GND", "GND")
+        self.X("M3", "NFET3", "PM3", "PCM1", "GND", "GND")
         self.L("LPK", "VDD", "PM3", 7.6e-9)
         self.C("CM2", "PM3", "OUT", 0.65e-12)
         self.C("CM3", "PM3", "GND", 4.7e-12)
